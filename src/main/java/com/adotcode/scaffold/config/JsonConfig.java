@@ -1,5 +1,6 @@
 package com.adotcode.scaffold.config;
 
+import com.adotcode.scaffold.core.constant.ApplicationConstants;
 import com.alibaba.fastjson.PropertyNamingStrategy;
 import com.alibaba.fastjson.parser.Feature;
 import com.alibaba.fastjson.parser.ParserConfig;
@@ -52,6 +53,8 @@ public class JsonConfig {
         SerializerFeature.WriteDateUseDateFormat,
         SerializerFeature.WriteEnumUsingToString
     );
+    //字符编码
+    fastJsonConfig.setCharset(ApplicationConstants.CHARSET);
     //序列化设置
     SerializeConfig serializeConfig = SerializeConfig.globalInstance;
     serializeConfig.propertyNamingStrategy = PropertyNamingStrategy.CamelCase;

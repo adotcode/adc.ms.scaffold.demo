@@ -1,6 +1,6 @@
 package com.adotcode.scaffold.config;
 
-import com.adotcode.scaffold.core.cache.FastJson2JsonRedisSerializer;
+import com.alibaba.fastjson.support.spring.GenericFastJsonRedisSerializer;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
@@ -27,18 +27,20 @@ public class CacheConfig extends CachingConfigurerSupport {
   }
 
   @Bean
-  public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
-    RedisTemplate<String, Object> template = new RedisTemplate<>();
+  public <TValue> RedisTemplate<String, TValue> redisTemplate(
+      RedisConnectionFactory connectionFactory) {
+    RedisTemplate<String, TValue> template = new RedisTemplate<>();
     template.setConnectionFactory(connectionFactory);
-    //使用FastJson2JsonRedisSerializer来序列化和反序列化redis的value值
-    FastJson2JsonRedisSerializer fastJson2JsonRedisSerializer = new FastJson2JsonRedisSerializer<>(
-        Object.class);
+    //默认使用GenericFastJsonRedisSerializer来序列化和反序列化redis的value值
+    GenericFastJsonRedisSerializer genericFastJsonRedisSerializer = new GenericFastJsonRedisSerializer();
     //使用StringRedisSerializer来序列化和反序列化redis的key值
     StringRedisSerializer keySerializer = new StringRedisSerializer();
     template.setKeySerializer(keySerializer);
     template.setHashKeySerializer(keySerializer);
-    template.setValueSerializer(fastJson2JsonRedisSerializer);
-    template.setHashValueSerializer(fastJson2JsonRedisSerializer);
+    template.setDefaultSerializer(genericFastJsonRedisSerializer);
+    template.setValueSerializer(genericFastJsonRedisSerializer);
+    template.setHashValueSerializer(genericFastJsonRedisSerializer);
+    template.setEnableDefaultSerializer(true);
     template.afterPropertiesSet();
     return template;
   }

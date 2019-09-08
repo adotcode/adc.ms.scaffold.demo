@@ -22,7 +22,8 @@ import tk.mybatis.mapper.annotation.ColumnType;
  * @date 2019/08/24
  */
 @Data
-public abstract class BaseAdcEntity<TPrimaryKey, TAuditBy> implements Serializable, Cloneable {
+public abstract class BaseAdcEntity<TPrimaryKey, TAuditBy> implements Serializable,
+    Cloneable {
 
   private static final long serialVersionUID = -467320348822673006L;
   /**

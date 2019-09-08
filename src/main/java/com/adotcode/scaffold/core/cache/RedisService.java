@@ -23,13 +23,6 @@ import javax.validation.constraints.NotNull;
 public interface RedisService<THashKey, TValue> {
 
   /**
-   * 设置序列化值类型
-   *
-   * @param valueClass 值对象类型
-   */
-  void setValueSerializerType(Class<TValue> valueClass);
-
-  /**
    * 设置哈希列表
    *
    * @param key redis key not  null

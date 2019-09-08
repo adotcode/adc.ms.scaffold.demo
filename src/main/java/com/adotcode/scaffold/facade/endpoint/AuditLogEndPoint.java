@@ -48,7 +48,6 @@ public class AuditLogEndPoint {
     this.auditLogService = auditLogService;
     this.organizationService = organizationService;
     this.redisService = redisService;
-    redisService.setValueSerializerType(Organization.class);
   }
 
 

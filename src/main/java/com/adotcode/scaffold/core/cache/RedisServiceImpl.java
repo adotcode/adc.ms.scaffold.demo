@@ -51,13 +51,6 @@ public class RedisServiceImpl<THashKey, TValue> implements RedisService<THashKey
   private ValueOperations<String, TValue> valueOperations;
   private ValueOperations<String, String> valueStingOperations;
 
-  @Override
-  public void setValueSerializerType(Class<TValue> valueClass) {
-    FastJson2JsonRedisSerializer valueSerializer = new FastJson2JsonRedisSerializer<>(valueClass);
-    redisTemplate.setValueSerializer(valueSerializer);
-    redisTemplate.setHashValueSerializer(valueSerializer);
-  }
-
   @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
   public RedisServiceImpl(
       StringRedisTemplate stringRedisTemplate,
