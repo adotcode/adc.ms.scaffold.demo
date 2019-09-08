@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.adotcode.scaffold.domain.mapper.organization.OrganizationMapper">
+  <resultMap id="BaseResultMap" type="com.adotcode.scaffold.domain.entity.Organization">
+    <!--@mbg.generated generated on Wed Sep 04 23:55:47 CST 2019.-->
+    <id column="id" jdbcType="VARCHAR" property="id" javaType="java.util.UUID"
+      typeHandler="com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler"/>
+    <result column="code" jdbcType="VARCHAR" property="code"/>
+    <result column="name" jdbcType="VARCHAR" property="name"/>
+    <result column="parent_id" jdbcType="VARCHAR" property="parentId"
+      typeHandler="com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler"/>
+    <result column="leaf" jdbcType="BIT" property="leaf"/>
+    <result column="level" jdbcType="INTEGER" property="level"/>
+    <result column="version" jdbcType="BIGINT" property="version"/>
+    <result column="created_by" jdbcType="VARCHAR" property="createdBy"
+      typeHandler="com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler"/>
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt"/>
+    <result column="updated_by" jdbcType="VARCHAR" property="updatedBy"
+      typeHandler="com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler"/>
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt"/>
+    <result column="deleted" jdbcType="BIT" property="deleted"/>
+    <result column="deleted_by" jdbcType="VARCHAR" property="deletedBy"
+      typeHandler="com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler"/>
+    <result column="deleted_at" jdbcType="TIMESTAMP" property="deletedAt"/>
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated generated on Wed Sep 04 23:55:47 CST 2019.-->
+    id, code, `name`, parent_id, leaf, `level`, version, created_by, created_at, updated_by,
+    updated_at, deleted, deleted_by, deleted_at
+  </sql>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated generated on Wed Sep 04 23:55:47 CST 2019.-->
+    update adc_organization
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="code = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id =
+          #{item.id,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler}
+          then #{item.code,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="`name` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id =
+          #{item.id,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler}
+          then #{item.name,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="parent_id = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id =
+          #{item.id,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler}
+          then
+          #{item.parentId,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler}
+        </foreach>
+      </trim>
+      <trim prefix="leaf = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id =
+          #{item.id,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler}
+          then #{item.leaf,jdbcType=BIT}
+        </foreach>
+      </trim>
+      <trim prefix="`level` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id =
+          #{item.id,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler}
+          then #{item.level,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="version = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id =
+          #{item.id,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler}
+          then #{item.version,jdbcType=BIGINT}
+        </foreach>
+      </trim>
+      <trim prefix="created_by = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id =
+          #{item.id,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler}
+          then
+          #{item.createdBy,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler}
+        </foreach>
+      </trim>
+      <trim prefix="created_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id =
+          #{item.id,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler}
+          then #{item.createdAt,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="updated_by = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id =
+          #{item.id,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler}
+          then
+          #{item.updatedBy,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler}
+        </foreach>
+      </trim>
+      <trim prefix="updated_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id =
+          #{item.id,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler}
+          then #{item.updatedAt,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="deleted = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id =
+          #{item.id,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler}
+          then #{item.deleted,jdbcType=BIT}
+        </foreach>
+      </trim>
+      <trim prefix="deleted_by = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id =
+          #{item.id,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler}
+          then
+          #{item.deletedBy,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler}
+        </foreach>
+      </trim>
+      <trim prefix="deleted_at = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id =
+          #{item.id,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler}
+          then #{item.deletedAt,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map"
+    useGeneratedKeys="true">
+    <!--@mbg.generated generated on Wed Sep 04 23:55:47 CST 2019.-->
+    insert into adc_organization
+    (code, `name`, parent_id, leaf, `level`, version, created_by, created_at, updated_by,
+    updated_at, deleted, deleted_by, deleted_at)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.code,jdbcType=VARCHAR}, #{item.name,jdbcType=VARCHAR},
+      #{item.parentId,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler},
+      #{item.leaf,jdbcType=BIT}, #{item.level,jdbcType=INTEGER}, #{item.version,jdbcType=BIGINT},
+      #{item.createdBy,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler},
+      #{item.createdAt,jdbcType=TIMESTAMP},
+      #{item.updatedBy,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler},
+      #{item.updatedAt,jdbcType=TIMESTAMP}, #{item.deleted,jdbcType=BIT},
+      #{item.deletedBy,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler},
+      #{item.deletedAt,jdbcType=TIMESTAMP}
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id"
+    parameterType="com.adotcode.scaffold.domain.entity.Organization" useGeneratedKeys="true">
+    <!--@mbg.generated generated on Wed Sep 04 23:55:47 CST 2019.-->
+    insert into adc_organization
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      code,
+      `name`,
+      parent_id,
+      leaf,
+      `level`,
+      version,
+      created_by,
+      created_at,
+      updated_by,
+      updated_at,
+      deleted,
+      deleted_by,
+      deleted_at,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler},
+      </if>
+      #{code,jdbcType=VARCHAR},
+      #{name,jdbcType=VARCHAR},
+      #{parentId,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler},
+      #{leaf,jdbcType=BIT},
+      #{level,jdbcType=INTEGER},
+      #{version,jdbcType=BIGINT},
+      #{createdBy,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler},
+      #{createdAt,jdbcType=TIMESTAMP},
+      #{updatedBy,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler},
+      #{updatedAt,jdbcType=TIMESTAMP},
+      #{deleted,jdbcType=BIT},
+      #{deletedBy,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler},
+      #{deletedAt,jdbcType=TIMESTAMP},
+    </trim>
+    on duplicate key update
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id =
+        #{id,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler},
+      </if>
+      code = #{code,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      parent_id =
+      #{parentId,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler},
+      leaf = #{leaf,jdbcType=BIT},
+      `level` = #{level,jdbcType=INTEGER},
+      version = #{version,jdbcType=BIGINT},
+      created_by =
+      #{createdBy,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_by =
+      #{updatedBy,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      deleted = #{deleted,jdbcType=BIT},
+      deleted_by =
+      #{deletedBy,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler},
+      deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id"
+    parameterType="com.adotcode.scaffold.domain.entity.Organization" useGeneratedKeys="true">
+    <!--@mbg.generated generated on Wed Sep 04 23:55:47 CST 2019.-->
+    insert into adc_organization
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="parentId != null">
+        parent_id,
+      </if>
+      <if test="leaf != null">
+        leaf,
+      </if>
+      <if test="level != null">
+        `level`,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="createdBy != null">
+        created_by,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedBy != null">
+        updated_by,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
+      <if test="deletedBy != null">
+        deleted_by,
+      </if>
+      <if test="deletedAt != null">
+        deleted_at,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler},
+      </if>
+      <if test="leaf != null">
+        #{leaf,jdbcType=BIT},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=BIGINT},
+      </if>
+      <if test="createdBy != null">
+        #{createdBy,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        #{updatedBy,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=BIT},
+      </if>
+      <if test="deletedBy != null">
+        #{deletedBy,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler},
+      </if>
+      <if test="deletedAt != null">
+        #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+    on duplicate key update
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id =
+        #{id,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        parent_id =
+        #{parentId,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler},
+      </if>
+      <if test="leaf != null">
+        leaf = #{leaf,jdbcType=BIT},
+      </if>
+      <if test="level != null">
+        `level` = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=BIGINT},
+      </if>
+      <if test="createdBy != null">
+        created_by =
+        #{createdBy,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null">
+        updated_by =
+        #{updatedBy,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=BIT},
+      </if>
+      <if test="deletedBy != null">
+        deleted_by =
+        #{deletedBy,jdbcType=VARCHAR,typeHandler=com.adotcode.scaffold.core.handler.datatype.UUIDTypeHandler},
+      </if>
+      <if test="deletedAt != null">
+        deleted_at = #{deletedAt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

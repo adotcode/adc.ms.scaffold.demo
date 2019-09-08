@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds">
+
+  <property name="LOG_HOME" value="${user.dir}/logs/"/>
+  <property name="APP_NAME" value="oauth2-server"/>
+  <property name="LOG_CHARSET" value="UTF-8"/>
+  <property name="LOG_PATTERN_COLOR"
+    value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %clr([TrackId:%X{track-id}]){green} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+  <!-- 彩色日志 -->
+  <!-- 彩色日志依赖的渲染类 -->
+  <conversionRule conversionWord="clr"
+    converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
+  <conversionRule conversionWord="wex"
+    converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter"/>
+  <conversionRule conversionWord="wEx"
+    converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter"/>
+  <!-- 控制台设置 -->
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder charset="${LOG_CHARSET}">
+      <pattern>${LOG_PATTERN_COLOR}</pattern>
+    </encoder>
+  </appender>
+
+  <!--  文件输出-->
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${LOG_HOME}/${APP_NAME}-%d{yyyy-MM-dd}.log</fileNamePattern>
+      <maxHistory>30</maxHistory>
+    </rollingPolicy>
+    <encoder>
+      <pattern>${FILE_LOG_PATTERN}</pattern>
+    </encoder>
+  </appender>
+  <!--  sentry日志平台-->
+  <appender name="Sentry" class="io.sentry.logback.SentryAppender">
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>ERROR</level>
+    </filter>
+  </appender>
+
+  <!--环境设置-->
+  <springProfile name="dev">
+    <root level="DEBUG">
+      <appender-ref ref="STDOUT"/>
+    </root>
+  </springProfile>
+
+  <springProfile name="prod,test">
+    <root level="WARN">
+      <appender-ref ref="FILE"/>
+      <appender-ref ref="Sentry"/>
+    </root>
+  </springProfile>
+
+</configuration>
+

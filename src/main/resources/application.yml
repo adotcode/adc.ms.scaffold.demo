@@ -1,0 +1,94 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: scaffold
+  profiles:
+    active: dev
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    master:
+      url: jdbc:mysql://127.0.0.1:3306/adc.ms.oauth2server?characterEncoding=utf8
+      username: root
+      password: risfeng@123!
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    slave:
+      url: jdbc:mysql://127.0.0.1:3306/adc.ms.oauth2server.slave?characterEncoding=utf8
+      username: root
+      password: risfeng@123!
+      driver-class-name: com.mysql.cj.jdbc.Driver
+  messages:
+    encoding: utf-8
+    base-folder: i18n
+  output:
+    ansi:
+      enabled: detect #启用彩色日志 NEVER、DETECT（推荐）、ALWAYS
+  cache:
+    type: redis
+    redis:
+      key-prefix: ${spring.application.name}
+      use-key-prefix: true
+  redis:
+    host: 47.101.55.136
+    port: 6379
+    password: risfeng
+    database: 0
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+#json 格式化日期格式
+json:
+  date-format: yyyy-MM-dd HH:mm:ss
+
+#日志配置
+logging:
+  config:
+    filter:
+      request-header: X-Track-Id #上游请求 日志跟踪Id头名称
+      response-header: X-Track-Id #响应日志跟踪Id头名称
+      mdc-track-key: track-id #mdc中跟踪唯一键名（key）记录日志输出时用
+
+#mybatis config
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #sql语句控制台输出
+  type-aliases-package: com.adotcode.scaffold.domain.entity
+  type-handlers-package: com.adotcode.scaffold.core.handler.datatype
+  config-location: classpath:mapper/**/**.xml
+
+#通用mapper配置
+mapper:
+  mappers: com.adotcode.scaffold.core.base.Mapper
+  not-empty: false
+  identity: MYSQL
+
+#swagger 配置
+swagger:
+  apis:
+    base-package: com.adotcode.scaffold.facade.endpoint
+  ui:
+    header: Referer
+    host-url-protocol: https
+    host-url: petstore.swagger.io
+  api-info:
+    title: Adc OAuth2.0 Server
+    description: A Dot Code Micro Service Application Of OAuth2 Server
+    version: v1.0.0
+    terms-of-service-url: https://service.adotcode.com
+    license: GNU Lesser General Public License v3.0
+    license-url: https://www.gnu.org/licenses/gpl-3.0.en.html
+    contact:
+      name: adc.com
+      url: https://service.adotcode.com
+      email: service@adotcode.com
+    vendor-extensions: #扩展字段list
+      - name: author
+        value: risfeng
+      - name: since
+        value: 2019-09-06
+
+
+
