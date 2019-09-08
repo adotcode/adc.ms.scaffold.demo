@@ -1,2 +1,23 @@
 # adc.ms.scaffold.demo
-a dot code scaffold demo project
+- IDE Idea
+- OpenJDK12
+- Lombok Plugin
+- Alibaba Java Coding Guidelines
+- Gradle
+- MySQL
+- Redis
+- MyBatis
+- Tk.MyBatis
+- Dynamic Data Source Switch
+- Failure Retry
+- Optimistic Lock
+- Global Exception handler
+- I18n
+- Default Use Fast Json
+- Base Mapper
+- Base Service
+- Data Type Handler
+- Log Track (MDC)
+- Sentry Log Platform
+- Object Mapping(ModelMapper)
+- Swagger2 Api Doc
