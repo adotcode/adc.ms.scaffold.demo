@@ -9,6 +9,7 @@ import com.adotcode.scaffold.core.response.HttpResult;
 import com.adotcode.scaffold.domain.entity.Organization;
 import com.adotcode.scaffold.service.auditlog.AuditLogService;
 import com.adotcode.scaffold.service.organization.OrganizationService;
+import io.swagger.annotations.Api;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import javax.validation.constraints.Min;
@@ -32,6 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Slf4j
 @Validated
+@Api(value = "审计日志控制器[测试控制器]", tags = {"审计日志控制器[测试控制器]"})
 public class AuditLogEndPoint {
 
 

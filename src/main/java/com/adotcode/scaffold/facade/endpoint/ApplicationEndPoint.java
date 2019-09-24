@@ -2,13 +2,13 @@ package com.adotcode.scaffold.facade.endpoint;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 
-import com.adotcode.scaffold.service.application.I18nService;
 import com.adotcode.scaffold.core.response.HttpResult;
 import com.adotcode.scaffold.core.response.HttpResult.ErrorWrapper;
 import com.adotcode.scaffold.core.response.ListHttpResult;
 import com.adotcode.scaffold.core.util.i18n.I18nMessageUtils;
 import com.adotcode.scaffold.facade.model.output.application.LanguageMessageSourceOutput;
 import com.adotcode.scaffold.facade.model.output.application.LanguageOutput;
+import com.adotcode.scaffold.service.application.I18nService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import java.util.List;
@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Slf4j
 @Validated
-@Api(value = "应用基础信息")
+@Api(value = "应用基础信息", tags = {"应用基础信息"})
 public class ApplicationEndPoint {
 
   private final I18nService i18nService;
